@@ -3,7 +3,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
 
   alias Scrivener.Ecto.{Comment, KeyValue, Post, Author}
 
-  defp create_posts do
+  defp create_posts() do
     unpublished_post = %Post{
       title: "Title unpublished",
       body: "Body unpublished",
@@ -63,7 +63,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
 
   describe "paginate" do
     test "paginates an unconstrained query" do
-      create_posts
+      create_posts()
 
       page = Post |> Scrivener.Ecto.Repo.paginate
 
@@ -74,7 +74,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "uses defaults from the repo" do
-      posts = create_posts
+      posts = create_posts()
 
       page =
         Post
@@ -89,7 +89,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "removes invalid clauses before counting total pages" do
-      posts = create_posts
+      posts = create_posts()
 
       page =
         Post
@@ -104,7 +104,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "can be provided the current page and page size as a params map" do
-      posts = create_posts
+      posts = create_posts()
 
       page =
         Post
@@ -118,7 +118,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "can be provided the current page and page size as options" do
-      posts = create_posts
+      posts = create_posts()
 
       page =
         Post
@@ -153,7 +153,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "can be used with a group by clause" do
-      create_posts
+      create_posts()
 
       page =
         Post
@@ -165,7 +165,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "can be provided a Scrivener.Config directly" do
-      posts = create_posts
+      posts = create_posts()
 
       config = %Scrivener.Config{
         module: Scrivener.Ecto.Repo,
@@ -185,7 +185,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "can be provided a keyword directly" do
-      posts = create_posts
+      posts = create_posts()
 
       page =
         Post
@@ -199,7 +199,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "can be provided a map directly" do
-      posts = create_posts
+      posts = create_posts()
 
       page =
         Post
