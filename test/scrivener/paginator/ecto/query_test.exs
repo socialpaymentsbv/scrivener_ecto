@@ -94,7 +94,6 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
       page =
         Post
         |> Post.published
-        |> order_by([p], desc: p.inserted_at)
         |> Scrivener.Ecto.Repo.paginate
 
       assert page.page_size == 5
@@ -141,7 +140,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
     test "can be used on a table with any primary key" do
-      create_key_values
+      create_key_values()
 
       page =
         KeyValue
@@ -213,7 +212,7 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
     end
 
    test "can be used with nested joins" do
-      create_nested_posts
+      create_nested_posts()
 
       page = Post
       |> join(:left, [p], c in assoc(p, :comments))
