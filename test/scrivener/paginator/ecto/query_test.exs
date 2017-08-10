@@ -88,20 +88,6 @@ defmodule Scrivener.Paginator.Ecto.QueryTest do
       assert page.total_pages == 2
     end
 
-    test "removes invalid clauses before counting total pages" do
-      posts = create_posts()
-
-      page =
-        Post
-        |> Post.published
-        |> Scrivener.Ecto.Repo.paginate
-
-      assert page.page_size == 5
-      assert page.page_number == 1
-      assert page.entries == Enum.take(posts, 5)
-      assert page.total_pages == 2
-    end
-
     test "can be provided the current page and page size as a params map" do
       posts = create_posts()
 
